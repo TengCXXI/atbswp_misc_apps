@@ -46,10 +46,10 @@ if action in 'MoveCopy':
             continue
 
 
-    # Create a while loop for the regex input which will:
-    #     -Use regex to select files for action
-    #     -Print out the number of actionable files
-    #     -Ask if the user would like to proceed with the selected files, or re-write the regex statement
+# Create a while loop for the regex input which will:
+#     -Use regex to select files for action
+#     -Print out the number of actionable files
+#     -Ask if the user would like to proceed with the selected files, or re-write the regex statement
 
 
 while True:
@@ -87,7 +87,7 @@ while True:
     if proceed_with_regex == "yes":
         break
 
-# TODO: Create a loop to copy the files based on regex
+# Create a loop to COPY the files based on regex
 
 if action == "Copy":
     for folder_name, subfolders, files in os.walk(folder_path):
@@ -97,7 +97,7 @@ if action == "Copy":
 
     print(str("{:,}".format(total_files_count)) + ' file(s) copied.')
 
-# TODO: Create a loop to move the files based on regex
+# Create a loop to MOVE the files based on regex
 
 if action == "Move":
     for folder_name, subfolders, files in os.walk(folder_path):
@@ -107,7 +107,7 @@ if action == "Move":
 
     print(str("{:,}".format(total_files_count)) + ' file(s) moved.')
 
-# TODO: Create a loop to delete the files based on regex
+# Create a loop to DELETE the files based on regex
 
 if action == "Delete":
     for folder_name, subfolders, files in os.walk(folder_path):
