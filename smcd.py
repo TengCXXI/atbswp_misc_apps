@@ -1,5 +1,6 @@
 #! python3
 # smcd.py - (Selective Move/Copy/Delete) Allows user to move/copy/delete file(s) based on regex filter
+# Created by Teng Mao @https://github.com/TengCXXI
 
 import os, re, shutil, send2trash
 import pyinputplus as pyip
