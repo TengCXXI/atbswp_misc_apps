@@ -1,5 +1,6 @@
 #! python3
 # password_detection.py - Allows user to enter a password and check whether it is strong based on the criteria below.
+# Created by Teng Mao @https://github.com/TengCXXI
 
 import re
 
