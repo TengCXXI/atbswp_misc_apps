@@ -82,7 +82,7 @@ while True:
         print('=' * printout_width)
 
         if total_files_count == 0:
-            print("No file(s) selected for action. Please enter a valid regex.")
+            print("No files selected for action. Please enter a valid regex.")
             continue
         
         print("Proceed - (y)es or (n)o?")
