@@ -51,43 +51,48 @@ if action in 'MoveCopy':
 #     -Print out the number of actionable files
 #     -Ask if the user would like to proceed with the selected files, or re-write the regex statement
 
-
 while True:
     # Input regex for filter to select files for action
-    print("Please enter the regex to select the files for action:")
-    print('Examples: "\w*\.txt$"(all ".txt" files), "^XyZ\S*"(begins with "XyZ"), \w*XyZ\S*(contains "XyZ"), "|" to add filter')
-    regex_input = input()
-    file_regex = re.compile(r'{0}'.format(regex_input), re.IGNORECASE)
+    try:
+        print("Please enter the regex to select the files for action:")
+        print('Examples: "\w*\.txt$"(all ".txt" files), "^XyZ\S*"(begins with "XyZ"), \w*XyZ\S*(contains "XyZ"), "|" to add filter')
+        regex_input = input()
+        file_regex = re.compile(r'{0}'.format(regex_input), re.IGNORECASE)
 
-    printout_width = 50
-    print('NUMBER OF ACTIONABLE FILES'.center(printout_width, '='))
+        printout_width = 50
+        print('NUMBER OF ACTIONABLE FILES'.center(printout_width, '='))
 
-    total_files_count = 0
+        total_files_count = 0
 
-    # Create a loop to count the number of files selected based on regex
+        # Create a loop to count the number of files selected based on regex
+        for folder_name, subfolders, files in os.walk(folder_path):
+            folder_files_count = 0
 
-    for folder_name, subfolders, files in os.walk(folder_path):
-        folder_files_count = 0
+            # Loop to count the files within the folder
+            for file in files:
+                if file_regex.search(file) != None:
+                    folder_files_count += 1
 
-        # Loop to count the files within the folder
-        for file in files:
-            if file_regex.search(file) != None:
-                folder_files_count += 1
+            # Increment the total_files by the folder_files count
+            total_files_count += folder_files_count
+            print(folder_name + ': ' + str("{:,}".format(folder_files_count)))
 
-        # Increment the total_files by the folder_files count
-        total_files_count += folder_files_count
-        print(folder_name + ': ' + str("{:,}".format(folder_files_count)))
+        print('=' * printout_width)
+        print('THE TOTAL NUMBER OF ACTIONABLE FILES: ' + str("{:,}".format(total_files_count)))
+        print('=' * printout_width)
 
-    print('=' * printout_width)
-    print('THE TOTAL NUMBER OF ACTIONABLE FILES: ' + str("{:,}".format(total_files_count)))
-    print('=' * printout_width)
+        if total_files_count == 0:
+            print("No file(s) selected for action. Please enter a valid regex.")
+            continue
+        
+        print("Proceed - (y)es or (n)o?")
+        proceed_with_regex = pyip.inputYesNo()
+        if proceed_with_regex == "yes":
+            break
+    except:
+        continue
 
-    print("Proceed - (y)es or (n)o?")
-    proceed_with_regex = pyip.inputYesNo()
-    if proceed_with_regex == "yes":
-        break
-
-# Create a loop to COPY the files based on regex
+# Create a loop to copy the files based on regex
 
 if action == "Copy":
     for folder_name, subfolders, files in os.walk(folder_path):
@@ -97,7 +102,7 @@ if action == "Copy":
 
     print(str("{:,}".format(total_files_count)) + ' file(s) copied.')
 
-# Create a loop to MOVE the files based on regex
+# Create a loop to move the files based on regex
 
 if action == "Move":
     for folder_name, subfolders, files in os.walk(folder_path):
@@ -107,7 +112,7 @@ if action == "Move":
 
     print(str("{:,}".format(total_files_count)) + ' file(s) moved.')
 
-# Create a loop to DELETE the files based on regex
+# Create a loop to delete the files based on regex
 
 if action == "Delete":
     for folder_name, subfolders, files in os.walk(folder_path):
