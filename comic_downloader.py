@@ -7,7 +7,7 @@ import requests, os, bs4, time
 import pyinputplus as pyip
 from pathlib import Path
 
-url = pyip.inputURL("Please provide the url for the comic to download, starting from page 1: ")
+url = pyip.inputURL("Please provide the url for the comic to download, starting from the first page you want: ")
 
 comic_name = pyip.inputStr("Please provide the comic name: ")
 
