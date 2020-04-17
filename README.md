@@ -6,3 +6,6 @@ Small miscellaneous apps created while studying "Automate the Boring Stuff with 
 
 ## smcd.py
 - (Selective Move/Copy/Delete) Allows user to move/copy/delete file(s) based on regex filter.
+
+## comic_downloader.py
+- Downloads all comic images for a series from certain websites
